@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  honeypot:
+    build: .
+    container_name: agentic-honeypot
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - API_KEYS=production-api-key-12345,production-api-key-67890
+      - LOG_LEVEL=info
+      - GUVI_CALLBACK_URL=https://hackathon.guvi.in/api/updateHoneyPotFinalResult
+      - CALLBACK_TIMEOUT=5000
+      - CALLBACK_MAX_RETRIES=3
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+  # Optional: Redis for session storage (for production)
+  # redis:
+  #   image: redis:7-alpine
+  #   container_name: honeypot-redis
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - redis-data:/data
+  #   restart: unless-stopped
+
+# volumes:
+#   redis-data:

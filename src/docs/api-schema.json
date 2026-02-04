@@ -1,0 +1,452 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Agentic Honey-Pot API Schema",
+    "version": "1.0.0",
+    "description": "Complete API schema for the Agentic Honey-Pot Scam Detection System"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api/v1",
+      "description": "Local development server"
+    }
+  ],
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key"
+      }
+    },
+    "schemas": {
+      "Message": {
+        "type": "object",
+        "required": ["sender", "text", "timestamp"],
+        "properties": {
+          "sender": {
+            "type": "string",
+            "enum": ["scammer", "user"],
+            "description": "Who sent the message"
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 5000,
+            "description": "The message content"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 timestamp"
+          }
+        }
+      },
+      "Metadata": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "enum": ["SMS", "WhatsApp", "Email", "Chat"],
+            "default": "Chat"
+          },
+          "language": {
+            "type": "string",
+            "default": "English"
+          },
+          "locale": {
+            "type": "string",
+            "default": "IN"
+          }
+        }
+      },
+      "MessageRequest": {
+        "type": "object",
+        "required": ["sessionId", "message"],
+        "properties": {
+          "sessionId": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 100,
+            "description": "Unique session identifier"
+          },
+          "message": {
+            "$ref": "#/components/schemas/Message"
+          },
+          "conversationHistory": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Message"
+            },
+            "default": []
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/Metadata"
+          }
+        }
+      },
+      "DetectionResult": {
+        "type": "object",
+        "properties": {
+          "isScam": {
+            "type": "boolean",
+            "description": "Whether the message is classified as scam"
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Confidence score of the detection"
+          },
+          "intent": {
+            "type": "string",
+            "enum": [
+              "banking_fraud",
+              "upi_fraud",
+              "phishing",
+              "lottery_scam",
+              "job_scam",
+              "kyc_fraud",
+              "otp_theft",
+              "card_fraud",
+              "tax_refund_scam",
+              "insurance_scam",
+              "customer_care_impersonation",
+              "emi_default_threat",
+              "cashback_reward_scam",
+              "sim_swap_scam",
+              "investment_scam",
+              "suspicious"
+            ],
+            "description": "Type of scam detected"
+          },
+          "indicators": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of indicators that triggered detection"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "MessageResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": ["success", "error"]
+          },
+          "reply": {
+            "type": "string",
+            "nullable": true,
+            "description": "AI agent's response to the scammer"
+          },
+          "scamDetected": {
+            "type": "boolean"
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "intent": {
+            "type": "string"
+          },
+          "strategy": {
+            "type": "string",
+            "description": "Response strategy used by AI agent"
+          },
+          "phase": {
+            "type": "string",
+            "enum": ["initial", "middle", "late", "error"]
+          }
+        }
+      },
+      "ExtractedIntelligence": {
+        "type": "object",
+        "properties": {
+          "bankAccounts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Masked bank account numbers"
+          },
+          "upiIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "phoneNumbers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "phishingLinks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "emails": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "cardNumbers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Masked card numbers"
+          },
+          "ifscCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "suspiciousKeywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "credentialRequests": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "riskScore": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "extractedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "CallbackPayload": {
+        "type": "object",
+        "required": [
+          "sessionId",
+          "scamDetected",
+          "totalMessagesExchanged",
+          "extractedIntelligence",
+          "agentNotes"
+        ],
+        "properties": {
+          "sessionId": {
+            "type": "string",
+            "description": "Unique session ID"
+          },
+          "scamDetected": {
+            "type": "boolean"
+          },
+          "totalMessagesExchanged": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "extractedIntelligence": {
+            "type": "object",
+            "properties": {
+              "bankAccounts": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "upiIds": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "phishingLinks": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "phoneNumbers": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "suspiciousKeywords": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          },
+          "agentNotes": {
+            "type": "string",
+            "maxLength": 1000,
+            "description": "Summary of scammer behavior and tactics"
+          }
+        }
+      },
+      "Statistics": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "description": "Total number of sessions"
+          },
+          "active": {
+            "type": "integer",
+            "description": "Number of active sessions"
+          },
+          "ended": {
+            "type": "integer",
+            "description": "Number of ended sessions"
+          },
+          "scamDetected": {
+            "type": "integer",
+            "description": "Number of sessions with scam detected"
+          },
+          "agentActive": {
+            "type": "integer",
+            "description": "Number of sessions with AI agent active"
+          },
+          "totalMessages": {
+            "type": "integer",
+            "description": "Total messages processed"
+          },
+          "averageMessagesPerSession": {
+            "type": "number"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": ["error"]
+          },
+          "message": {
+            "type": "string"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health check",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Service is healthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "timestamp": { "type": "string" },
+                    "version": { "type": "string" },
+                    "uptime": { "type": "number" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/process-message": {
+      "post": {
+        "summary": "Process incoming message",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MessageRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Message processed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "API key missing"
+          },
+          "403": {
+            "description": "Invalid API key"
+          }
+        }
+      }
+    },
+    "/api/v1/statistics": {
+      "get": {
+        "summary": "Get system statistics",
+        "responses": {
+          "200": {
+            "description": "Statistics retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "statistics": {
+                      "$ref": "#/components/schemas/Statistics"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

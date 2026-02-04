@@ -1,0 +1,175 @@
+{
+  "confusion": [
+    "I'm not sure I understand. What do you mean exactly?",
+    "Sorry, I'm a bit confused. Can you explain that again?",
+    "I didn't quite get that. Could you clarify?",
+    "Wait, what? I'm not following you.",
+    "Hmm, I'm not sure what you're saying. Can you be more specific?",
+    "That doesn't make sense to me. Can you explain differently?"
+  ],
+  "concern": [
+    "Oh no, that sounds serious. What should I do?",
+    "I'm worried now. Is everything okay?",
+    "That makes me nervous. Can you help me understand?",
+    "I hope there's no problem. What happened?",
+    "I'm concerned about this. Please tell me more."
+  ],
+  "question": [
+    "Why is this happening?",
+    "What caused this issue?",
+    "Can you tell me more details?",
+    "When did this start?",
+    "How did you get my number?",
+    "Which account are you referring to?",
+    "Is this really from the bank?",
+    "Can I verify this somewhere?"
+  ],
+  "hesitation": [
+    "I'm not sure about this...",
+    "Let me think about it for a moment.",
+    "I need some time to process this.",
+    "This seems a bit odd to me.",
+    "I'm not comfortable sharing that right now.",
+    "Can I get back to you on this?"
+  ],
+  "request_clarification": [
+    "Can you explain what you need from me?",
+    "What exactly are you asking for?",
+    "I'm not clear on what information you need.",
+    "Could you be more specific about what you want?",
+    "What do I need to do exactly?"
+  ],
+  "ask_for_details": [
+    "Can you provide more details about this?",
+    "What are the specific steps I need to follow?",
+    "Can you tell me which department this is from?",
+    "Do you have a reference number for this?",
+    "Can I get this in writing or email?"
+  ],
+  "ask_for_proof": [
+    "How can I verify that you're really from the bank?",
+    "Can you provide some identification?",
+    "Is there a way to confirm this is legitimate?",
+    "Can I call the official number to verify?",
+    "Do you have an employee ID I can check?"
+  ],
+  "reluctance": [
+    "I don't think I should share that information.",
+    "I'm not comfortable doing that.",
+    "That doesn't seem right to me.",
+    "I'd rather not share those details.",
+    "I think I should check with my bank first."
+  ],
+  "delay": [
+    "Can I do this later? I'm busy right now.",
+    "I'll need to check with my family first.",
+    "Let me get back to you tomorrow.",
+    "I need some time to gather that information.",
+    "Can we do this another time?"
+  ],
+  "technical_difficulty": [
+    "My phone is having issues. Can you wait?",
+    "The network is bad here. Let me try again.",
+    "My internet is not working properly.",
+    "I'm having trouble with my phone.",
+    "The app is not opening. Let me restart."
+  ],
+  "ask_why": [
+    "Why do you need that information?",
+    "What will you do with this information?",
+    "Why is this necessary?",
+    "Can't you help me without that?",
+    "Is there another way to do this?"
+  ],
+  "ask_alternatives": [
+    "Is there another way to do this?",
+    "Can I visit the branch instead?",
+    "Can I do this through the official app?",
+    "Is there a website I can use?",
+    "Can I email the documents instead?"
+  ],
+  "ask_official_channel": [
+    "Can I do this through the official app?",
+    "I'll visit my nearest branch for this.",
+    "Let me call the official customer care.",
+    "I prefer to use the bank's website.",
+    "Can you send me an official email?"
+  ],
+  "ask_branch_visit": [
+    "I'll just go to the bank branch.",
+    "Can I do this by visiting the branch?",
+    "I think it's better if I go in person.",
+    "Let me visit my home branch for this.",
+    "I'd prefer to handle this at the branch."
+  ],
+  "ask_fee_details": [
+    "Are there any charges for this?",
+    "Do I need to pay anything?",
+    "Is there a processing fee?",
+    "How much will this cost me?",
+    "Are there any hidden charges?"
+  ],
+  "ask_process": [
+    "What is the process for this?",
+    "How does this work exactly?",
+    "Can you walk me through the steps?",
+    "What happens after I provide this?",
+    "How long will this take?"
+  ],
+  "ask_official_process": [
+    "What is the official process for this?",
+    "Is there a standard procedure?",
+    "Can you share the official guidelines?",
+    "Where can I read about this process?",
+    "Is this mentioned on the bank's website?"
+  ],
+  "suspicion": [
+    "This sounds suspicious to me.",
+    "I'm not sure if this is legitimate.",
+    "This doesn't seem right.",
+    "I've heard about scams like this.",
+    "Are you sure this is from the bank?"
+  ],
+  "ask_verification": [
+    "How can I verify this is real?",
+    "Can I check this with the bank?",
+    "Is there a verification process?",
+    "Can you send me proof?",
+    "How do I know you're who you say you are?"
+  ],
+  "surprise": [
+    "Oh really? I wasn't expecting this.",
+    "Wow, that's unexpected.",
+    "I didn't know about this.",
+    "That's news to me.",
+    "I had no idea this was happening."
+  ],
+  "excitement_cautious": [
+    "That sounds good, but let me make sure.",
+    "Interesting, but I need to verify first.",
+    "Sounds exciting, but I should be careful.",
+    "That would be great if it's real.",
+    "I hope this is legitimate."
+  ],
+  "interest": [
+    "Tell me more about this.",
+    "I'm interested in knowing more.",
+    "Can you share more details?",
+    "What else can you tell me?",
+    "I'd like to understand better."
+  ],
+  "neutral": [
+    "Okay, I understand.",
+    "I see what you're saying.",
+    "Alright, go on.",
+    "I'm listening.",
+    "Please continue."
+  ],
+  "curiosity": [
+    "How did you find me?",
+    "Where did you get my number?",
+    "How do you know about this?",
+    "Who told you to contact me?",
+    "I'm curious, how does this work?"
+  ]
+}

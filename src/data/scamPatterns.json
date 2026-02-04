@@ -1,0 +1,148 @@
+{
+  "patterns": [
+    {
+      "name": "bank_account_block",
+      "regex": "(?:bank|account)\\s*(?:will be|getting|is)?\\s*(?:blocked|suspended|closed|deactivated|terminated)",
+      "weight": 0.35,
+      "description": "Bank account block threat"
+    },
+    {
+      "name": "urgent_verification",
+      "regex": "(?:urgent|immediate|immediately|asap|today|now)\\s*(?:verify|verification|confirm|validate|update)",
+      "weight": 0.30,
+      "description": "Urgent verification request"
+    },
+    {
+      "name": "upi_payment_request",
+      "regex": "(?:upi|payment|transfer|send money)\\s*(?:request|id|handle|address)",
+      "weight": 0.30,
+      "description": "UPI payment request"
+    },
+    {
+      "name": "otp_request",
+      "regex": "(?:share|send|provide|give)\\s*(?:me|us)?\\s*(?:your)?\\s*(?:otp|password|pin|cvv)",
+      "weight": 0.40,
+      "description": "OTP or credential request"
+    },
+    {
+      "name": "kyc_update",
+      "regex": "(?:kyc|know your customer)\\s*(?:update|verification|expir|pending|incomplete)",
+      "weight": 0.25,
+      "description": "KYC update request"
+    },
+    {
+      "name": "lottery_win",
+      "regex": "(?:congratulation|won|winner|prize|lottery|lucky draw|selected)\\s*(?:\\d+\\s*(?:lakh|crore|million|thousand)?)?",
+      "weight": 0.35,
+      "description": "Lottery or prize scam"
+    },
+    {
+      "name": "job_offer",
+      "regex": "(?:job|employment|work from home|part time|full time)\\s*(?:offer|opportunity|vacancy|opening)",
+      "weight": 0.20,
+      "description": "Job offer scam"
+    },
+    {
+      "name": "suspicious_link",
+      "regex": "(?:click|visit|open|go to)\\s*(?:here|this|link|website|portal)",
+      "weight": 0.25,
+      "description": "Suspicious link request"
+    },
+    {
+      "name": "card_block",
+      "regex": "(?:card|credit card|debit card|atm card)\\s*(?:blocked|suspended|expired|deactivated)",
+      "weight": 0.30,
+      "description": "Card block threat"
+    },
+    {
+      "name": "tax_refund",
+      "regex": "(?:tax|income tax|gst|refund)\\s*(?:refund|rebate|return|claim)",
+      "weight": 0.25,
+      "description": "Tax refund scam"
+    },
+    {
+      "name": "insurance_claim",
+      "regex": "(?:insurance|policy|claim)\\s*(?:bonus|maturity|settlement|payout)",
+      "weight": 0.25,
+      "description": "Insurance claim scam"
+    },
+    {
+      "name": "fake_customer_care",
+      "regex": "(?:customer care|helpline|support|service center)\\s*(?:call|contact|reach)",
+      "weight": 0.20,
+      "description": "Fake customer care"
+    },
+    {
+      "name": "aadhaar_pan_link",
+      "regex": "(?:aadhaar|pan|link)\\s*(?:link|update|verify|mandatory|deadline)",
+      "weight": 0.25,
+      "description": "Aadhaar/PAN linking scam"
+    },
+    {
+      "name": "emi_default",
+      "regex": "(?:emi|loan|installment)\\s*(?:default|overdue|pending|late payment)",
+      "weight": 0.25,
+      "description": "EMI default threat"
+    },
+    {
+      "name": "cashback_offer",
+      "regex": "(?:cashback|reward|bonus|credit)\\s*(?:offer|available|waiting|claim)",
+      "weight": 0.20,
+      "description": "Cashback offer scam"
+    }
+  ],
+  "scamExamples": [
+    { "text": "Your bank account will be blocked today. Verify immediately.", "label": "scam" },
+    { "text": "Dear customer, your ATM card has been suspended. Call immediately to reactivate.", "label": "scam" },
+    { "text": "Urgent: Your KYC is pending. Update now or account will be closed.", "label": "scam" },
+    { "text": "Congratulations! You have won Rs. 25,00,000 in lucky draw. Call to claim.", "label": "scam" },
+    { "text": "Share your OTP to complete the transaction. Do not share with anyone.", "label": "scam" },
+    { "text": "Your UPI ID needs verification. Click link to verify.", "label": "scam" },
+    { "text": "Job offer: Work from home, earn 50000 monthly. Send details.", "label": "scam" },
+    { "text": "Your credit card points are expiring. Redeem now by clicking here.", "label": "scam" },
+    { "text": "Income tax refund of Rs. 48,500 is pending. Verify bank details.", "label": "scam" },
+    { "text": "Your Aadhaar card needs to be linked with PAN immediately.", "label": "scam" },
+    { "text": "EMI payment overdue. Pay immediately or legal action will be taken.", "label": "scam" },
+    { "text": "Your account has been selected for cashback reward. Claim now.", "label": "scam" },
+    { "text": "Suspicious activity detected on your account. Verify credentials.", "label": "scam" },
+    { "text": "Your insurance policy has matured. Contact for settlement.", "label": "scam" },
+    { "text": "Call our customer care to unblock your card immediately.", "label": "scam" },
+    { "text": "Your net banking access will be revoked. Update password now.", "label": "scam" },
+    { "text": "Free gift waiting for you. Pay shipping charges to receive.", "label": "scam" },
+    { "text": "Your mobile number will be deactivated. Update KYC urgently.", "label": "scam" },
+    { "text": "Loan approved! Pay processing fee to receive amount.", "label": "scam" },
+    { "text": "Your pension account needs verification. Submit documents.", "label": "scam" },
+    { "text": "Last chance to update your account details. Do it now.", "label": "scam" },
+    { "text": "Your wallet balance is expiring. Transfer to bank immediately.", "label": "scam" },
+    { "text": "Unusual login attempt detected. Confirm your identity.", "label": "scam" },
+    { "text": "Your FD has matured. Provide account details for credit.", "label": "scam" },
+    { "text": "Paytm KYC incomplete. Complete now to continue using wallet.", "label": "scam" },
+    { "text": "Your Amazon order refund is pending. Verify card details.", "label": "scam" },
+    { "text": "Bank server maintenance. Re-verify your account credentials.", "label": "scam" },
+    { "text": "Your SIM card will be deactivated. Link with Aadhaar now.", "label": "scam" },
+    { "text": "Reward points worth Rs. 5000 expiring. Redeem immediately.", "label": "scam" },
+    { "text": "Your account is flagged for suspicious transactions. Clear now.", "label": "scam" }
+  ],
+  "legitimateExamples": [
+    { "text": "Your transaction of Rs. 500 was successful. Reference: 123456.", "label": "legitimate" },
+    { "text": "Your account balance is Rs. 15,000 as of today.", "label": "legitimate" },
+    { "text": "Thank you for shopping with us. Your order will be delivered tomorrow.", "label": "legitimate" },
+    { "text": "Your monthly statement is ready. View it in your banking app.", "label": "legitimate" },
+    { "text": "Your FD will mature on 15th March 2026. No action required.", "label": "legitimate" },
+    { "text": "Salary credited to your account. Amount: Rs. 50,000.", "label": "legitimate" },
+    { "text": "Your loan EMI of Rs. 10,000 has been deducted successfully.", "label": "legitimate" },
+    { "text": "Welcome to our service. Your registration is complete.", "label": "legitimate" },
+    { "text": "Your password was changed successfully. If not you, contact us.", "label": "legitimate" },
+    { "text": "Your appointment is confirmed for tomorrow at 10 AM.", "label": "legitimate" },
+    { "text": "Thank you for your payment. Receipt attached.", "label": "legitimate" },
+    { "text": "Your insurance premium is due on 25th of this month.", "label": "legitimate" },
+    { "text": "Your credit card bill of Rs. 5,000 is generated.", "label": "legitimate" },
+    { "text": "OTP for login is 123456. Valid for 5 minutes.", "label": "legitimate" },
+    { "text": "Your request for new cheque book has been processed.", "label": "legitimate" },
+    { "text": "Thank you for visiting our branch today.", "label": "legitimate" },
+    { "text": "Your mutual fund investment has been confirmed.", "label": "legitimate" },
+    { "text": "Reminder: Your EMI is due in 3 days.", "label": "legitimate" },
+    { "text": "Your account statement has been emailed to you.", "label": "legitimate" },
+    { "text": "Your mobile banking is now active. Download our app.", "label": "legitimate" }
+  ]
+}

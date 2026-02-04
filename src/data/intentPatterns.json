@@ -1,0 +1,177 @@
+{
+  "intents": {
+    "banking_fraud": {
+      "keywords": ["bank", "account", "block", "suspend", "close", "deactivate", "freeze"],
+      "patterns": [
+        "account (will be|is getting) (blocked|suspended|closed)",
+        "bank account (verification|update|confirmation) required",
+        "your account has been (flagged|restricted|limited)"
+      ],
+      "severity": "high",
+      "description": "Banking fraud attempting to steal account credentials"
+    },
+    "upi_fraud": {
+      "keywords": ["upi", "payment", "transfer", "send money", "request money", "collect"],
+      "patterns": [
+        "upi (id|payment|transfer|request)",
+        "send money (to|via) upi",
+        "upi (verification|activation|registration)"
+      ],
+      "severity": "high",
+      "description": "UPI fraud attempting to steal money via payment apps"
+    },
+    "phishing": {
+      "keywords": ["click", "link", "website", "portal", "login", "verify", "confirm"],
+      "patterns": [
+        "click (here|this link|below)",
+        "visit (our|the) (website|portal|link)",
+        "login (to|and) verify",
+        "confirm (your|account) details"
+      ],
+      "severity": "high",
+      "description": "Phishing attempt to steal credentials via fake websites"
+    },
+    "lottery_scam": {
+      "keywords": ["win", "winner", "prize", "lottery", "lucky", "selected", "congratulations"],
+      "patterns": [
+        "congratulations.*won",
+        "you (have|are) (won|selected|chosen)",
+        "(claim|collect) your (prize|reward|winning)"
+      ],
+      "severity": "medium",
+      "description": "Lottery scam promising fake prizes"
+    },
+    "job_scam": {
+      "keywords": ["job", "employment", "work from home", "part time", "full time", "salary", "earn"],
+      "patterns": [
+        "work from home (job|opportunity)",
+        "(earn|make).*(daily|weekly|monthly)",
+        "job (offer|opportunity|opening|vacancy)"
+      ],
+      "severity": "medium",
+      "description": "Job scam offering fake employment opportunities"
+    },
+    "kyc_fraud": {
+      "keywords": ["kyc", "know your customer", "update", "verification", "document", "identity"],
+      "patterns": [
+        "kyc (update|verification|pending|incomplete)",
+        "update (your|kyc) details",
+        "kyc (mandatory|required|compulsory)"
+      ],
+      "severity": "high",
+      "description": "KYC fraud attempting to steal identity documents"
+    },
+    "otp_theft": {
+      "keywords": ["otp", "password", "pin", "cvv", "share", "send", "provide"],
+      "patterns": [
+        "share (your|the) otp",
+        "send (me|us) (your|the) (otp|password|pin)",
+        "provide (your|the) (verification|confirmation) code"
+      ],
+      "severity": "critical",
+      "description": "Direct attempt to steal OTP or credentials"
+    },
+    "card_fraud": {
+      "keywords": ["card", "credit card", "debit card", "atm", "cvv", "expiry"],
+      "patterns": [
+        "card (blocked|suspended|expired|deactivated)",
+        "(credit|debit) card (verification|update)",
+        "atm card (reactivation|unblock)"
+      ],
+      "severity": "high",
+      "description": "Card fraud attempting to steal card details"
+    },
+    "tax_refund_scam": {
+      "keywords": ["tax", "income tax", "gst", "refund", "rebate", "claim"],
+      "patterns": [
+        "tax (refund|rebate|return)",
+        "income tax (refund|claim|settlement)",
+        "gst (refund|credit|return)"
+      ],
+      "severity": "medium",
+      "description": "Tax refund scam promising fake refunds"
+    },
+    "insurance_scam": {
+      "keywords": ["insurance", "policy", "claim", "maturity", "bonus", "payout"],
+      "patterns": [
+        "insurance (claim|maturity|bonus|settlement)",
+        "policy (matured|bonus|payout)",
+        "(claim|receive) your (insurance|policy) amount"
+      ],
+      "severity": "medium",
+      "description": "Insurance scam promising fake settlements"
+    },
+    "customer_care_impersonation": {
+      "keywords": ["customer care", "helpline", "support", "service", "call center"],
+      "patterns": [
+        "call (our|the) (customer care|helpline|support)",
+        "contact (our|the) (service center|help desk)",
+        "(reach|call) us (at|on|immediately)"
+      ],
+      "severity": "high",
+      "description": "Impersonation of bank/customer care representatives"
+    },
+    "emi_default_threat": {
+      "keywords": ["emi", "loan", "installment", "overdue", "default", "legal", "action"],
+      "patterns": [
+        "emi (overdue|default|pending)",
+        "loan (default|overdue|arrears)",
+        "legal (action|notice|proceeding)"
+      ],
+      "severity": "medium",
+      "description": "Threat of legal action for fake EMI defaults"
+    },
+    "cashback_reward_scam": {
+      "keywords": ["cashback", "reward", "bonus", "points", "credit", "gift"],
+      "patterns": [
+        "cashback (offer|reward|waiting)",
+        "reward points (expiring|redeem)",
+        "(claim|get) your (cashback|reward|bonus)"
+      ],
+      "severity": "low",
+      "description": "Fake cashback or reward offers"
+    },
+    "sim_swap_scam": {
+      "keywords": ["sim", "mobile", "number", "deactivate", "port", "network"],
+      "patterns": [
+        "sim (deactivation|block|suspend)",
+        "mobile number (deactivate|expire|block)",
+        "(port|transfer) your number"
+      ],
+      "severity": "high",
+      "description": "SIM swap or mobile number fraud"
+    },
+    "investment_scam": {
+      "keywords": ["investment", "returns", "profit", "double", "scheme", "plan"],
+      "patterns": [
+        "(double|triple) your (money|investment)",
+        "(high|guaranteed) returns",
+        "investment (scheme|plan|opportunity)"
+      ],
+      "severity": "medium",
+      "description": "Fake investment schemes promising high returns"
+    }
+  },
+  "severityLevels": {
+    "critical": {
+      "score": 1.0,
+      "action": "immediate_block",
+      "description": "Critical threat requiring immediate action"
+    },
+    "high": {
+      "score": 0.75,
+      "action": "agent_engagement",
+      "description": "High threat requiring agent engagement"
+    },
+    "medium": {
+      "score": 0.5,
+      "action": "monitor",
+      "description": "Medium threat requiring monitoring"
+    },
+    "low": {
+      "score": 0.25,
+      "action": "log",
+      "description": "Low threat, log for analysis"
+    }
+  }
+}
