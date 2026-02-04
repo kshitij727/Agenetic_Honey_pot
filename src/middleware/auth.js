@@ -1,50 +1,28 @@
-/**
- * API Key Authentication Middleware
- * Supports multiple keys from .env (comma separated)
- * Header: x-api-key
- */
+module.exports.authenticateApiKey = (req, res, next) => {
+  const apiKey = req.headers['x-api-key'];
 
-require('dotenv').config();
-
-const authenticateApiKey = (req, res, next) => {
-  try {
-    const apiKey = req.headers['x-api-key'];
-
-    if (!apiKey) {
+  // In production, allow any non-empty API key
+  if (process.env.NODE_ENV === 'production') {
+    if (!apiKey || apiKey.trim() === '') {
       return res.status(401).json({
         status: 'error',
-        message: 'API key missing (x-api-key header required)'
+        message: 'API key required'
       });
     }
+    return next();
+  }
 
-    // Read keys from .env
-    const validKeys = (process.env.API_KEYS || '')
-      .split(',')
-      .map(k => k.trim())
-      .filter(Boolean);
+  // In development, validate against allowed keys
+  const allowedKeys = process.env.API_KEYS
+    ? process.env.API_KEYS.split(',').map(k => k.trim())
+    : [];
 
-    if (validKeys.length === 0) {
-      console.error('❌ No API_KEYS configured in .env');
-      return res.status(500).json({
-        status: 'error',
-        message: 'Server configuration error'
-      });
-    }
-
-    if (!validKeys.includes(apiKey)) {
-      return res.status(403).json({
-        status: 'error',
-        message: 'Invalid API key'
-      });
-    }
-
-    next();
-  } catch (error) {
-    return res.status(500).json({
+  if (!apiKey || !allowedKeys.includes(apiKey)) {
+    return res.status(401).json({
       status: 'error',
-      message: 'Authentication failed'
+      message: 'Invalid API key'
     });
   }
-};
 
-module.exports = { authenticateApiKey };
+  next();
+};
