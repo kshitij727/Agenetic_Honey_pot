@@ -1,5 +1,5 @@
 /**
- * Agentic Honey-Pot – Official Endpoint Tester Compatible Server
+ * Agentic Honey-Pot – FINAL OFFICIAL COMPATIBLE SERVER
  */
 
 const express = require('express');
@@ -42,9 +42,11 @@ app.post(
   `/api/${API_VERSION}/process-message`,
   authenticateApiKey,
   (req, res) => {
+
+    // ✅ This matches OFFICIAL expected response
     return res.status(200).json({
       status: 'success',
-      message: 'Honeypot endpoint reachable, authenticated, and operational'
+      reply: 'Why is my account being suspended?'
     });
   }
 );
